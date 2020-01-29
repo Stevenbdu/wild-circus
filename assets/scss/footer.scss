@@ -1,0 +1,17 @@
+.icones {
+  font-size: 1.8rem;
+  color: $gold-color;
+}
+a:not([href]) {
+  color: $gold-color;
+}
+.page-footer {
+  background-color: $blue-color;
+}
+
+.titleFooter {
+  font-family: $font-title;
+  color: $white-color;
+  font-size: 1.5rem;
+
+}

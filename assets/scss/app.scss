@@ -1,4 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
-body {
-    background-color: lightgray;
+@import "vars";
+@import "navbar";
+@import "footer";
+
+
+.btn-danger {
+  background-color: $red-color;
 }
