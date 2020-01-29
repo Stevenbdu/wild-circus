@@ -18,10 +18,19 @@
             <li class="nav-item">
                 <a class="nav-link mr-5 btn btn-danger" href="#"><span class="nav-effect">Réservation</span></a>
             </li>
+            {% if app.user %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('reservations') }}"><span class="nav-effect">Mes réservations</span></a>
+            </li>
+            {% endif %}
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link mr-5" href="#"><span class="nav-effect">Connexion</span></a>
+                {% if app.user %}
+                <a class="nav-link mr-5" href="{{ path('app_logout') }}"><span class="nav-effect">Déconnexion</span></a>
+                {% else %}
+                <a class="nav-link mr-5" href="{{ path('app_login') }}"><span class="nav-effect">Connexion</span></a>
+                {% endif %}
             </li>
         </ul>
     </div>

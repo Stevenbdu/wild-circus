@@ -25,8 +25,9 @@ class TourController extends AbstractController
     /**
      * @Route("/tournee", name="tour_index_public", methods={"GET"})
      */
-    public function indexPublic(TourRepository $tourRepository): Response
+    public function indexPublic(TourRepository $tourRepository, Request $request): Response
     {
+
         return $this->render('tour/tournee.html.twig', [
             'tours' => $tourRepository->findAll(),
         ]);

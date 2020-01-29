@@ -16,6 +16,7 @@ class TourType extends AbstractType
             ->add('price')
             ->add('start')
             ->add('end')
+
         ;
     }
 

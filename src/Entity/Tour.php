@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,16 @@ class Tour
      * @ORM\Column(type="datetime")
      */
     private $end;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="Reservation")
+     */
+    private $reservation;
+
+    public function __construct()
+    {
+        $this->reservation = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +97,34 @@ class Tour
     public function setEnd(\DateTimeInterface $end): self
     {
         $this->end = $end;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getReservation(): Collection
+    {
+        return $this->reservation;
+    }
+
+    public function addReservation(User $reservation): self
+    {
+        if (!$this->reservation->contains($reservation)) {
+            $this->reservation[] = $reservation;
+            $reservation->addReservation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(User $reservation): self
+    {
+        if ($this->reservation->contains($reservation)) {
+            $this->reservation->removeElement($reservation);
+            $reservation->removeReservation($this);
+        }
 
         return $this;
     }
