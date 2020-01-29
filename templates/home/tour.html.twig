@@ -1,0 +1,29 @@
+<div class="container-fluid Tour">
+    <h2 class="m-4 text-center titleTour ">Les prochaines représentations</h2>
+    <div class="row flex d-flex justify-content-center rowTour">
+        <div class="col-lg-8 col-10">
+            <div class="card-body text-center cardTour">
+                {% for tour in tours|slice(0,3) %}
+                    <div class="d-inline-flex justify-content-around m-3">
+                        <div class="col-sm-12 text-center mt-4 border-bottom m-2">
+                            <p>
+                                <i class="fas fa-map-marker-alt"></i>
+                                {{ tour.city }}
+                            </p>
+                            <p>
+                                <i class="fas fa-calendar-week"></i>
+                                {{ tour.start|date('d/m/Y') }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div>
+                    <a class="btn btn-danger justify-content-center reserved m-5" href="#">Réservation</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

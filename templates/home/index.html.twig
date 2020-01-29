@@ -1,7 +1,10 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Wild Circus{% endblock %}
 
 {% block body %}
-
+    <img src="https://cdn.pixabay.com/photo/2015/07/02/10/16/circus-828680_960_720.jpg" width="100%">
+{% block tour %}
+    {% include 'home/tour.html.twig' %}
+    {% endblock %}
 {% endblock %}
