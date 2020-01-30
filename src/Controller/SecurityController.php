@@ -6,10 +6,12 @@ use App\Entity\Tour;
 use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Form\TestType;
+use Symfony\Component\Mime\Email;
 
 class SecurityController extends AbstractController
 {
@@ -26,15 +28,27 @@ class SecurityController extends AbstractController
     /**
      * @Route("reserve/{id}", name="reserve")
      */
-    public function reserve(Tour $tour): Response
+    public function reserve(Tour $tour, MailerInterface $mailer): Response
     {
         $user = $this->getUser();
         $tour->addReservation($user);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($tour);
         $entityManager->flush();
+        $message = (new Email())
+            ->from($this->getParameter('mailer_from'))
+            ->to($user->getEmail())
+            ->subject('Réservation')
+            ->html($this->renderView('contact/mail_reservation.html.twig', [
+                'tour' => $tour
+            ]));
+        $mailer->send($message);
+        $this->addFlash(
+            'success',
+            "Réservation effectué, un mail va vous être envoyé avec le détail."
+        );
 
-        return $this->redirectToRoute('home_index');
+        return $this->redirectToRoute('tour_index_public');
 
     }
 
