@@ -3,27 +3,31 @@
 {% block title %}Les tournées{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="text-center titleTour"> Les dates et lieux de la tournée</h1>
-        <div class="table-responsive">
-            <table class="table">
-                <tbody>
-                {% for tour in tours %}
-                    <tr>
-                        <td>{{ tour.city }}</td>
-                        <td>{{ tour.start ? tour.start|date('d/m/Y') }}</td>
-                        <td>{{ tour.end ? tour.end|date('d/m/Y') }}</td>
-                        <td>
-                            {% if app.user is null %}
-                            <a class="btn btn-inactive justify-content-center reserved">Réserver</a>
-                            {% else %}
-                                <a class="btn btn-danger justify-content-center reserved" href="{{ path('reserve', {'id' :tour.id }) }}">Réserver</a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+    <div class="container p-5">
+        <div class="card m-3 p-4">
+            <h1 class="text-center titleTour"> Les dates et lieux de la tournée</h1>
+            <div class="table-responsive">
+                <table class="table p-5">
+                    <tbody>
+                    {% for tour in tours %}
+                        <tr>
+                            <td class="text-center">{{ tour.city }}</td>
+                            <td class="text-center">Du {{ tour.start ? tour.start|date('d/m/Y') }}</td>
+                            <td class="text-center">Au {{ tour.end ? tour.end|date('d/m/Y') }}</td>
+                            <td class="text-center">{{ tour.price }} €</td>
+                            <td>
+                                {% if app.user is null %}
+                                    <a class="btn btn-inactive justify-content-center reserved">Réserver</a>
+                                {% else %}
+                                    <a class="btn btn-danger justify-content-center reserved" href="{{ path('reserve', {'id' :tour.id }) }}">Réserver</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </div>
 {% endblock %}

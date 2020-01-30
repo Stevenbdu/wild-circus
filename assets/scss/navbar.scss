@@ -7,44 +7,87 @@ nav {
   font-size: 1.5rem;
 }
 
+
 .navbar-light .navbar-nav .nav-link {
   color: $white-color;
   text-decoration: none;
 }
+.navbar-light .navbar-nav .nav-link:hover {
+  color: $gold-color;
+}
 
+.nav-style:hover {
+  color: none;
+}
 .bg-blue {
   background-color: $blue-color;
 }
 
 
-.effect-4 a:before {
-  content: "[";
-  left: -5px;
+//.effect-4 a:before {
+//  content: "[";
+//  left: -5px;
+//}
+//
+//.effect-4 a:after {
+//  content: "]";
+//  right: -5px;
+//}
+//
+//.effect-4 a:before,
+//.effect-4 a:after {
+//  position: absolute;
+//  opacity: 0;
+//  color: #fff;
+//  top: -1px;
+//  transition: all .5s;
+//}
+//
+//.effect-4 a:hover:before,
+//.effect-4 a:hover:after {
+//  opacity: 0.7;
+//}
+//
+//.effect-4 a:hover:before {
+//  left: -20px;
+//}
+//
+//.effect-4 a:hover:after {
+//  right: -20px;
+//}
+
+.nav-effect {
+  position: relative;
+  padding: 5px;
 }
 
-.effect-4 a:after {
-  content: "]";
-  right: -5px;
-}
-
-.effect-4 a:before,
-.effect-4 a:after {
+.nav-effect::before, span::after {
+  content: '';
   position: absolute;
-  opacity: 0;
-  color: #fff;
-  top: -1px;
-  transition: all .5s;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: $gold-color;
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
 }
 
-.effect-4 a:hover:before,
-.effect-4 a:hover:after {
-  opacity: 0.7;
+.nav-effect::before {
+  top: 0;
+  transform-origin: center right;
 }
 
-.effect-4 a:hover:before {
-  left: -20px;
+.nav-effect:hover::before {
+  transform-origin: center left;
+  transform: scaleX(1);
 }
 
-.effect-4 a:hover:after {
-  right: -20px;
+.nav-effect::after {
+  bottom: 0;
+  transform-origin: center left;
+}
+
+.nav-effect:hover::after {
+  transform-origin: center right;
+  transform: scaleX(1);
 }
