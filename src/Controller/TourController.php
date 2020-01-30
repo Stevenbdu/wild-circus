@@ -25,9 +25,8 @@ class TourController extends AbstractController
     /**
      * @Route("/tournee", name="tour_index_public", methods={"GET"})
      */
-    public function indexPublic(TourRepository $tourRepository, Request $request): Response
+    public function indexPublic(TourRepository $tourRepository): Response
     {
-
         return $this->render('tour/tournee.html.twig', [
             'tours' => $tourRepository->findAll(),
         ]);
@@ -86,6 +85,7 @@ class TourController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("tour/{id}", name="tour_delete", methods={"DELETE"})
      */
@@ -99,4 +99,5 @@ class TourController extends AbstractController
 
         return $this->redirectToRoute('tour_index');
     }
+
 }

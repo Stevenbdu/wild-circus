@@ -14,7 +14,7 @@
                         <td>{{ tour.start ? tour.start|date('d/m/Y') }}</td>
                         <td>{{ tour.end ? tour.end|date('d/m/Y') }}</td>
                         <td>
-                            <a class="btn btn-danger justify-content-center reserved" href="#">Réservation</a>
+                            <a class="btn btn-danger justify-content-center reserved" href="{{ path('reserve', {'id' :tour.id }) }}">Réserver</a>
                         </td>
                     </tr>
                 {% endfor %}
