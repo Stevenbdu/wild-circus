@@ -1,24 +1,29 @@
 <div class="container-fluid Tour">
-    <h2 class="m-4 text-center titleTour ">Les prochaines représentations</h2>
-    <div class="row flex d-flex justify-content-center rowTour">
-        <div class="col-lg-8 col-10">
-            <div class="card-body text-center cardTour">
-                {% for tour in tours|slice(0,3) %}
+    <div class="row flex justify-content-center rowTour">
+        <div class="col-lg-8 col-12 m-5">
+            <div class="card-body text-center cardTour p-5">
+                <h2 class="col col-lg-10text-center titleTour">Les prochaines représentations</h2>
+                {% for tour in tours|slice(0,2) %}
                     <div class="d-inline-flex justify-content-around m-3">
-                        <div class="col-sm-12 text-center mt-4 border-bottom m-2">
+                        <div class="col-sm-12 text-center mt-4 nextTour">
                             <p>
-                                <i class="fas fa-map-marker-alt"></i>
+                                <i class="fas fa-map-marker-alt favic"></i>
                                 {{ tour.city }}
                             </p>
                             <p>
-                                <i class="fas fa-calendar-week"></i>
+                                <i class="fas fa-calendar-week favic"></i>
                                 {{ tour.start|date('d/m/Y') }}
+                            </p>
+                            <p>
+                                <i class="fas fa-euro-sign favic"></i>
+                                {{ tour.price }}
                             </p>
                         </div>
                     </div>
                 {% endfor %}
                 <div>
-                    <a class="btn btn-danger justify-content-center reserved m-5" href="#">Réservation</a>
+                    <a class="btn btn-danger justify-content-center reserved" href="{{ path('tour_index_public') }}">Réservation</a>
+
                 </div>
             </div>
 

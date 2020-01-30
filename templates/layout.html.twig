@@ -3,6 +3,16 @@
 {% block layout %}
     {% block header %}
         {% include 'include/_navbar.html.twig' %}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }} msgFlash" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endfor %}
     {% endblock %}
     <main>
         {% block body %}

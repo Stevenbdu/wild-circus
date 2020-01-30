@@ -6,12 +6,21 @@
 @import "form";
 @import "contact";
 @import "tournee";
+@import "reservation";
 
 body {
   color :$blue-color;
+  font-family: $font-body;
+  font-size: $font-size;
 }
 .btn-danger {
   background-color: $red-color;
   border-radius: 3em;
   font-family: $font-title;
+}
+.alert {
+  margin-bottom: 0;
+}
+.container-fluid {
+  padding: 0;
 }

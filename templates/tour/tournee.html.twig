@@ -6,8 +6,8 @@
     <div class="container p-5">
         <div class="card m-3 p-4">
             <h1 class="text-center titleTour"> Les dates et lieux de la tournée</h1>
-            <div class="table-responsive">
-                <table class="table p-5">
+            <div class="table-responsive p-2">
+                <table class="table m-2 overflow-hidden">
                     <tbody>
                     {% for tour in tours %}
                         <tr>
@@ -16,11 +16,7 @@
                             <td class="text-center">Au {{ tour.end ? tour.end|date('d/m/Y') }}</td>
                             <td class="text-center">{{ tour.price }} €</td>
                             <td>
-                                {% if app.user is null %}
-                                    <a class="btn btn-inactive justify-content-center reserved">Réserver</a>
-                                {% else %}
                                     <a class="btn btn-danger justify-content-center reserved" href="{{ path('reserve', {'id' :tour.id }) }}">Réserver</a>
-                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
