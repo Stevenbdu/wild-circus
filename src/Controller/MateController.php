@@ -10,13 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/mate")
- */
+
 class MateController extends AbstractController
 {
     /**
-     * @Route("/", name="mate_index", methods={"GET"})
+     * @Route("equipe", name="equipe_index", methods={"GET"})
+     */
+    public function indexEquipe(MateRepository $mateRepository): Response
+    {
+        return $this->render('mate/index_equipe.html.twig', [
+            'mates' => $mateRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("mate", name="mate_index", methods={"GET"})
      */
     public function index(MateRepository $mateRepository): Response
     {
@@ -26,7 +33,7 @@ class MateController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="mate_new", methods={"GET","POST"})
+     * @Route("mate/new", name="mate_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -49,7 +56,7 @@ class MateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="mate_show", methods={"GET"})
+     * @Route("mate/{id}", name="mate_show", methods={"GET"})
      */
     public function show(Mate $mate): Response
     {
@@ -59,7 +66,7 @@ class MateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="mate_edit", methods={"GET","POST"})
+     * @Route("mate/{id}/edit", name="mate_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Mate $mate): Response
     {
@@ -80,7 +87,7 @@ class MateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="mate_delete", methods={"DELETE"})
+     * @Route("mate/{id}", name="mate_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Mate $mate): Response
     {
