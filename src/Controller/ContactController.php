@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,19 +18,24 @@ class ContactController extends AbstractController
      */
     public function contact(Request $request, MailerInterface $mailer)
     {
-        $form = $this->createForm(ContactType::class);
 
+        $contact = new Contact();
+
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $contactFormData = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+
             $message = (new Email())
                 ->from($this->getParameter('mailer_from'))
-                ->to($contactFormData['email'])
+                ->to($contact->getEmail())
                 ->subject('Question')
                 ->html($this->renderView('contact/mail.html.twig', [
-                    'message' => $contactFormData['message']
+                    'message' => $contact->getMessage(),
                 ]));
             $mailer->send($message);
             $this->addFlash(
@@ -37,10 +43,8 @@ class ContactController extends AbstractController
                 "Votre demande a bien été pris en compte.
                  "
             );
-
             return $this->redirectToRoute("home_index");
         }
-
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView()
         ]);
