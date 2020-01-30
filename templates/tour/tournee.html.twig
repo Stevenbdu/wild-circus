@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Les tournées{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center titleTour"> Les dates et lieux de la tournée</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                {% for tour in tours %}
+                    <tr>
+                        <td>{{ tour.city }}</td>
+                        <td>{{ tour.start ? tour.start|date('d/m/Y') }}</td>
+                        <td>{{ tour.end ? tour.end|date('d/m/Y') }}</td>
+                        <td>
+                            <a class="btn btn-danger justify-content-center reserved" href="{{ path('reserve', {'id' :tour.id }) }}">Réserver</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

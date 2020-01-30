@@ -2,8 +2,12 @@
 @import "vars";
 @import "navbar";
 @import "footer";
+@import "tour";
 
-
+body {
+  color :$blue-color;
+}
 .btn-danger {
   background-color: $red-color;
+  border-radius: 3em;
 }

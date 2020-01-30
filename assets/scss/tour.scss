@@ -1,0 +1,27 @@
+.cardTour {
+  //background-image: url("https://www.cirque-gruss.com/assets/img/layout/bg-bokeh_blue.jpg");
+  background-color: $blue-color;
+  border-radius: 3rem;
+  color: $white-color;
+  min-height: 300px;
+}
+
+.Tour {
+  background-color: $white-color;
+  color: $gold-color;
+}
+
+.rowTour {
+  background-color: $white-color;
+}
+
+.titleTour {
+  color: $gold-color;
+  font-family: $font-title;
+  font-size: 3rem;
+}
+
+.reserved {
+  font-size: 1.5rem;
+  font-family: $font-title;
+}
