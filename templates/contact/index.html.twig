@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Contactez-nous{% endblock %}
+
+{% block body %}
+
+    <div class="container p-5 ">
+        <div class="card p-5">
+            <h1 class="text-center m-3 titleContact">Contactez-nous</h1>
+            {{ form_start(form) }}
+            <div class="row justify-content-center mt-2">
+                <div class="col text-center">
+                    {{ form_row(form.firstname,{'attr': {'class': 'form-login'}}) }}
+
+                </div>
+                <div class="col text-center">
+                    {{ form_row(form.lastname,{'attr': {'class': 'form-login'}}) }}
+                </div>
+            </div>
+            <div class="row justify-content-center mt-2">
+                <div class="col text-center">
+                    {{ form_row(form.phone,{'attr': {'class': 'form-login'}}) }}
+
+                </div>
+                <div class="col text-center">
+                    {{ form_row(form.email,{'attr': {'class': 'form-login'}}) }}
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                {{ form_row(form.message, {'attr': {'class': 'form-login-message'}}) }}
+
+            </div>
+            <div class="flex d-flex justify-content-around">
+                <button class="btn btn-danger btnContact mt-3">{{ button_label|default('Envoyer') }}</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+
+
+    </div>
+{% endblock %}
