@@ -3,20 +3,15 @@
 {% block title %}Mate index{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="card">
-            <h1>Mate index</h1>
-
+    <div class="container-fluid">
+        <div class="card mb-5">
+            <h1 class="titleLogin text-center m-5">L'équipe</h1>
             <table class="table">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Picture</th>
-                    <th>actions</th>
-                </tr>
-                </thead>
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ path('mate_new') }}">Créer</a>
+                    </div>
+                </div>
                 <tbody>
                 {% for mate in mates %}
                     <tr>
@@ -25,8 +20,8 @@
                         <td>{{ mate.description }}</td>
                         <td>{{ mate.picture }}</td>
                         <td>
-                            <a href="{{ path('mate_show', {'id': mate.id}) }}">show</a>
-                            <a href="{{ path('mate_edit', {'id': mate.id}) }}">edit</a>
+                            <a href="{{ path('mate_show', {'id': mate.id}) }}">Voir</a>
+                            <a href="{{ path('mate_edit', {'id': mate.id}) }}">Modifier</a>
                         </td>
                     </tr>
                 {% else %}
@@ -37,7 +32,7 @@
                 </tbody>
             </table>
 
-            <a href="{{ path('mate_new') }}">Create new</a>
+
         </div>
 
     </div>

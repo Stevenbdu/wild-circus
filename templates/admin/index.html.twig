@@ -4,6 +4,11 @@
 
 {% block body %}
     <div class="container p-5">
+        <div class="d-flex justify-content-around">
+            <a class="btn btn-danger" href="{{ path('tour_index') }}">Tournées</a>
+            <a class="btn btn-danger" href="{{ path('mate_index') }}">L'équipe</a>
+        </div>
+
         <div class="card m-3 p-4">
             <h1 class="text-center titleTour">Vos messages</h1>
             <div class="table-responsive p-2">

@@ -1,5 +1,5 @@
 .icones {
-  font-size: 1.8rem;
+  font-size: 2.3rem;
   color: $gold-color;
 }
 a:not([href]) {
@@ -7,12 +7,14 @@ a:not([href]) {
 }
 .page-footer {
   background-color: $blue-color;
+  color : $white-color;
+  font-family: $font-title;
 }
 
 .titleFooter {
   font-family: $font-title;
   color: $white-color;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 
 }
 footer {

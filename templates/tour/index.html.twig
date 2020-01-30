@@ -3,37 +3,40 @@
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-    <div class="card">
-        <h1 class="titleLogin text-center m-5">Les tournées</h1>
-        <table class="table m-5 p-5">
-            <div class="row">
-                <div class="col">
-                    <a href="{{ path('tour_new') }}" class="btn btn-dark m-2">Créer</a>
+    <div class="container-fluid">
+        <div class="card mb-5">
+            <h1 class="titleLogin text-center m-5">Les tournées</h1>
+            <table class="table mb-5">
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ path('tour_new') }}" class="btn btn-dark m-2">Créer</a>
 
+                    </div>
                 </div>
-            </div>
-            <tbody>
-            {% for tour in tours %}
-                <tr>
-                    <td>{{ tour.id }}</td>
-                    <td>{{ tour.city }}</td>
-                    <td>{{ tour.price }}</td>
-                    <td>{{ tour.start ? tour.start|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ tour.end ? tour.end|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>
-                        <a href="{{ path('tour_show', {'id': tour.id}) }}">Voir</a>
-                        <a href="{{ path('tour_edit', {'id': tour.id}) }}">Modifier</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="6">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                <tbody>
+                {% for tour in tours %}
+                    <tr>
+                        <td>{{ tour.id }}</td>
+                        <td>{{ tour.city }}</td>
+                        <td>{{ tour.price }}</td>
+                        <td>{{ tour.start ? tour.start|date('Y-m-d') }}</td>
+                        <td>{{ tour.end ? tour.end|date('Y-m-d') }}</td>
+                        <td>
+                            <a href="{{ path('tour_show', {'id': tour.id}) }}">Voir</a>
+                            <a href="{{ path('tour_edit', {'id': tour.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
 
+        </div>
     </div>
+
 
 {% endblock %}
