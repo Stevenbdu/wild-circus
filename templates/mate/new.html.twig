@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Mate{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h1>Create new Mate</h1>
+
+        {{ include('mate/_form.html.twig') }}
+
+        <a href="{{ path('mate_index') }}">back to list</a>
+    </div>
+
+{% endblock %}

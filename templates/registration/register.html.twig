@@ -17,10 +17,11 @@
                     {{ form_widget(registrationForm.plainPassword,{'attr': {'class': 'form-login'}}) }}
                 </div>
             </div>
+            <div class="flex d-flex justify-content-around">
+                <button class="btn btn-danger btnContact mt-3">{{ button_label|default('Envoyer') }}</button>
+            </div>
         </div>
-        <div class="flex d-flex justify-content-around">
-            <button class="btn btn-danger btnContact mt-3">{{ button_label|default('Envoyer') }}</button>
-        </div>
+
         {{ form_end(registrationForm) }}
     </div>
 {% endblock %}

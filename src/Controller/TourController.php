@@ -28,7 +28,7 @@ class TourController extends AbstractController
     public function indexPublic(TourRepository $tourRepository): Response
     {
         return $this->render('tour/tournee.html.twig', [
-            'tours' => $tourRepository->findAll(),
+            'tours' => $tourRepository->findBy([], ['start' => 'DESC']),
         ]);
     }
 

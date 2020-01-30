@@ -1,11 +1,16 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}New Tour{% endblock %}
+{% block title %}Nouvelle tournée{% endblock %}
 
 {% block body %}
-    <h1>Create new Tour</h1>
+    <div class="container-fluid">
+        <div class="card justify-content-center">
+            <h1 class="text-center titleLogin m-5">Création de la tournée</h1>
 
-    {{ include('tour/_form.html.twig') }}
+            {{ include('tour/_form.html.twig') }}
 
-    <a href="{{ path('tour_index') }}">back to list</a>
+        </div>
+    </div>
+
+
 {% endblock %}

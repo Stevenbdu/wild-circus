@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Mate index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="card">
+            <h1>Mate index</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Picture</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for mate in mates %}
+                    <tr>
+                        <td>{{ mate.id }}</td>
+                        <td>{{ mate.name }}</td>
+                        <td>{{ mate.description }}</td>
+                        <td>{{ mate.picture }}</td>
+                        <td>
+                            <a href="{{ path('mate_show', {'id': mate.id}) }}">show</a>
+                            <a href="{{ path('mate_edit', {'id': mate.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('mate_new') }}">Create new</a>
+        </div>
+
+    </div>
+
+{% endblock %}

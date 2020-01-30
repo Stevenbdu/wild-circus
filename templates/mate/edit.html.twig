@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit Mate{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h1>Edit Mate</h1>
+
+        {{ include('mate/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('mate_index') }}">back to list</a>
+
+        {{ include('mate/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}
