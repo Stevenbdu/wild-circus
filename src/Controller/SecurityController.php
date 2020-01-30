@@ -2,56 +2,56 @@
 
 namespace App\Controller;
 
-use App\Entity\Tour;
-use App\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use App\Form\TestType;
-use Symfony\Component\Mime\Email;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;use App\Entity\User;
+use App\Form\RegistrationFormType;
+use App\Security\LoginFormAuthenticator;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+
 
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/reservations", name="reservations")
+     * @Route("/register", name="app_register")
      */
-    public function reservations()
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
-        $user = $this->getUser();
-        return $this->render('security/reservation.html.twig', [
-            'user' => $user,
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            // do anything else you need here, like send an email
+
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
+        }
+
+        return $this->render('security/register.html.twig', [
+            'registrationForm' => $form->createView(),
         ]);
     }
-    /**
-     * @Route("reserve/{id}", name="reserve")
-     */
-    public function reserve(Tour $tour, MailerInterface $mailer): Response
-    {
-        $user = $this->getUser();
-        $tour->addReservation($user);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($tour);
-        $entityManager->flush();
-        $message = (new Email())
-            ->from($this->getParameter('mailer_from'))
-            ->to($user->getEmail())
-            ->subject('Réservation')
-            ->html($this->renderView('contact/mail_reservation.html.twig', [
-                'tour' => $tour
-            ]));
-        $mailer->send($message);
-        $this->addFlash(
-            'success',
-            "Réservation effectué, un mail va vous être envoyé avec le détail."
-        );
-
-        return $this->redirectToRoute('tour_index_public');
-
-    }
-
 
     /**
      * @Route("/login", name="app_login")

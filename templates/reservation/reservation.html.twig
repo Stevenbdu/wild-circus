@@ -14,6 +14,8 @@
                             <p>Du {{ reservation.start|date('d/m/Y') }} au {{ reservation.end|date('d/m/Y') }}</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                             <footer class="blockquote-footer">Une tournée du  <cite title="Source Title">Wild Circus</cite></footer>
+                            <a class="btn btn-danger justify-content-center reserved" href="{{ path('cancel_reservation', {'id' :reservation.id }) }}">Annuler</a>
+
                         </blockquote>
                     </div>
                 </div>
