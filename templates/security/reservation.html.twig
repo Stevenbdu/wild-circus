@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+    {% for reservation in user.Reservation %}
+        {{ reservation.city }}
+        {{ reservation.price }}
+        {{ reservation.start|date('Y') }}
+        {{ reservation.end|date('M') }}
+        {{ reservation.id}}
+    {% endfor %}
+
+
+{% endblock %}
