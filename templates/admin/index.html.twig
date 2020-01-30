@@ -1,0 +1,29 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Administrateur{% endblock %}
+
+{% block body %}
+    <div class="container p-5">
+        <div class="card m-3 p-4">
+            <h1 class="text-center titleTour">Vos messages</h1>
+            <div class="table-responsive p-2">
+                <table class="table m-2 overflow-hidden">
+                    <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td class="text-center">{{ contact.firstname }}</td>
+                            <td class="text-center">{{ contact.lastname }}</td>
+                            <td class="text-center">{{ contact.email }}</td>
+                            <td class="text-center">{{ contact.message }}</td>
+                            <td>
+                                <a class="btn btn-danger justify-content-center reserved"
+                                   href="mailto:{{ contact.email }}">Répondre</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

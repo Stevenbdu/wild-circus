@@ -4,7 +4,7 @@
             <div class="card-body text-center cardTour p-5">
                 <h2 class="col col-lg-10text-center titleTour">Les prochaines représentations</h2>
                 {% for tour in tours|slice(0,2) %}
-                    <div class="d-inline-flex justify-content-around m-3">
+                    <div class="d-inline-flex justify-content-around m-3 tour">
                         <div class="col-sm-12 text-center mt-4 nextTour">
                             <p>
                                 <i class="fas fa-map-marker-alt favic"></i>
@@ -22,7 +22,7 @@
                     </div>
                 {% endfor %}
                 <div>
-                    <a class="btn btn-danger justify-content-center reserved" href="{{ path('tour_index_public') }}">Réservation</a>
+                    <a class="btn btn-danger justify-content-center reserved mt-4" href="{{ path('tour_index_public') }}">Réservation</a>
 
                 </div>
             </div>
